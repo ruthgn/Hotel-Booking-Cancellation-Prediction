@@ -1,6 +1,6 @@
 *Full project with complete code and datasets available on my Github [repository](https://github.com/ruthgn/Hotel-Booking-Cancellation-Prediction).*
 
-Every year, more than 140 million bookings made on the internet and many hotel bookings made through top-visited travel websites like Booking.com, Expedia.com, Hotels.com, etc. According to Google data, hotels are booked in advance of 12 weeks. We will use hotel booking data from 2015-2017 to classify and predict whether or not an individual hotel booking will be cancelled.
+Every year, there are more than 140 million bookings made on the internet. Most hotel bookings are placed via popular travel sites like Booking.com, Expedia.com, Hotels.com, etc. According to Google data, hotels are booked up to 12 weeks in advance.
 
 Let's find the best model to predict hotel booking cancellations using tree-based algorithms based on the features found in the dataset. Our goal is to avoid overfitting and find the model that has the highest accuracy.
 
@@ -440,7 +440,7 @@ plt.ylabel('Canceled vs Not Canceled', fontsize=12)
 ![png](predicting-hotel-booking-cancellation_files/predicting-hotel-booking-cancellation_12_1.png)
 
 
-37% of hotel bookings were canceled while the remaining 63% were not.
+37% of hotel bookings were canceled.
 
 
 ```python
@@ -797,7 +797,7 @@ pd.crosstab(index = hotelData['stays_in_week_nights'],columns=hotelData['stays_i
 
 
 
-*Note*: 715 entries had inputted zero for both weekend and weeknights. However, this amount of missing data is small enough for us to ignore. 
+*Note*: 715 entries had input zero for both weekend and weeknights. However, this amount of missing data is small enough for us to ignore. 
 
 We'll create a new feature with labels`weekend_stay_only`,`weekday_stay_only`, and `weekday_and_weekend_stay`. The 715 entries with missing values will be labeled as undefined_data.
 
@@ -1092,7 +1092,7 @@ groupMealData.applymap('{:.2f}'.format)
 
 
 
-We learned that 67% of bookings made for `City Hotel` included `Bed&Breakfast` meal package while 94% of `Resort Hotel` booking included `Full Board` meal package.
+We learned that 67% of bookings made for `City Hotel` included `Bed&Breakfast` meal package while 94% of `Resort Hotel` bookings included a `Full Board` meal package.
 
 Let's check out the countries our hotel bookings originated from.
 
@@ -1142,7 +1142,7 @@ plt.ylabel('Count', fontsize=12)
 ![png](predicting-hotel-booking-cancellation_files/predicting-hotel-booking-cancellation_37_1.png)
 
 
-Statistics have shown that online hotel and airline reservations are becoming increasingly popular in recent years. Our data shows that most people complete their hotel reservations with their smartphones. More than 45% of bookings are made via `Online Travel Agents` while roughly 20% of bookings are made via `Offline Travel Agents`. Only less than 20% of bookings were made directly without any help from travel agents.
+Statistics have shown that online hotel and airline reservations are becoming increasingly popular in recent years. Our data shows that most people completed their hotel reservations on a smartphone. More than 45% of bookings are made via `Online Travel Agents` while roughly 20% of bookings are made via `Offline Travel Agents`. Less than 20% of bookings were made directly by the customer.
 
 Next, we're going to check if there were booking instances where the assigned room ended up being a different room from the one originally reserved.
 
@@ -1360,9 +1360,9 @@ pd.crosstab(index = hotelData['reserved_room_type'],
 
 
 
-*Note*: Every row represents the reserved room type and distribution over the columns shows the type of room actually assigned.
+*Note*: Every row represents the reserved room type and the distribution across the columns shows the type of room actually assigned.
 
-Roughly 84% of bookings get to keep their reserved room while the remaining bookings have to go through a room change.
+Roughly 84% of bookings get to keep their reserved room while the remaining bookings require a room change.
 
 We're also interested in looking into the relationship between ADR (Advanced Dining Reservations) and hotel booking cancellation status by month.
 
@@ -1388,9 +1388,9 @@ plt.ylabel('ADR', fontsize=12)
 ![png](predicting-hotel-booking-cancellation_files/predicting-hotel-booking-cancellation_43_1.png)
 
 
-As we've figured out previously, August is the busiest month both in terms of number of arrivals. Additionaly, it is also the busiest month in terms of amount of bookings made.
+As we figured out previously, August is the busiest month both in terms of number of arrivals. Additionaly, it is the busiest month in terms of the number of bookings made.
 
-Notice that on the months of August, July and September (peak season for hotels), cancelled bookings have higher number of ADR than those that weren't cancelled. Perhaps this high rate of ADR could be one of the reasons for cancelled bookings.
+Notice that in the months of August, July and September (peak season for hotels), cancelled bookings have higher number of ADR than those that weren't cancelled. 
 
 
 ```python
@@ -1492,9 +1492,9 @@ hotelData.isnull().sum()
 
 The `company` column is missing data on 94% of its rows. Therefore, we will be eliminating this variable. 
 
-On the other hand, the `children` and `all_children` features have 4 missing data. These null values will be replaced with zero. 
+On the other hand, the `children` and `all_children` features have 4 missing data points. These null values will be replaced with zero. 
 
-The `country` and `agent` features also have missing data. Since null values in `country` consist of only 1% of all the data in the column, we'll replace them with the most frequent value (mode). For the `agent` feature, missing data will be inputed as '0'.
+The `country` and `agent` features also have missing data. Since null values in `country` consist of only 1% of all the data in the column, we'll replace them with the most frequent value (mode). For the `agent` feature, missing data will be input as '0'.
 
 
 ```python
@@ -1513,9 +1513,9 @@ hotelData['agent']= hotelData['agent'].astype(int)
 hotelData['country']= hotelData['country'].astype(str)
 ```
 
-Another task we need to do is analyzing categorical features.
+Another task we need to do is analyze categorical features.
 
-Categorical labels should be converted into numeric format to make them more understandable and implementable for training machine learning algorithms. We can use [one-hot encoding](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) for some non-ordinal features such as `country`, but due to the numerous categories, this method would incur a higher computational cost. Therefore, [label encoding](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) method will be used instead.
+Categorical labels should be converted into a numeric format to make them more understandable and implementable for training machine learning algorithms. We can use [one-hot encoding](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) for some non-ordinal features such as `country`, but due to the numerous categories, this method would incur a higher computational cost. Therefore, the [label encoding](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) method will be used instead.
 
 
 ```python
@@ -1638,7 +1638,7 @@ plt.title("Correlation Matrix-Spearman Method (Categorical Data)",size=15, weigh
 ![png](predicting-hotel-booking-cancellation_files/predicting-hotel-booking-cancellation_60_1.png)
 
 
-We learned that `reservation_ status` as a feature has a negative correlation with hotel booking cancellation. However, we can see the relationship between the feature and target variable in details below:
+We learned that `reservation_ status` as a feature has a negative correlation with hotel booking cancellation. However, we can see the relationship between the feature and target variable in detail below:
 
 
 ```python
@@ -1746,9 +1746,9 @@ print(corrValuesCategorical, corrValuesNumerical)
     [] ['children']
     
 
-There is also high correlation between hotel booking cancellation and `children` & `all_children` features. Since the `all_children` feature comprises of `children` and the `babies` features, we can remove `children` as a feature.
+There is also high correlation between hotel booking cancellation and `children` & `all_children` features. Since the `all_children` feature is comprised of the `children` and `babies` features, we can remove `children` as a feature.
 
-Additionally, we will also be removing `reservation_status_date` from our features since it contains date type data that cannot be converted to a different type.
+Additionally, we will also be removing `reservation_status_date` from our features since it contains date-type data that cannot be converted into a different type.
 
 
 ```python
@@ -1764,9 +1764,9 @@ hotelDataModel = hotelData
 
 ## 4. Hyperparameter Tunning and Calculating Feature Importance
 
-Next, we will be searching for optimum hyperparameters for several tree-based machine learning algorithms with the help of [grid search algorithm](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV).  Hyperparameter tunning helps us create more accurate predictions. Therefore, we will set the values for our hyperparameters before our model training process.
+Next, we will be searching for optimum hyperparameters for several tree-based machine learning algorithms with the help of a [grid search algorithm](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV).  Hyperparameter tuning helps us create more accurate predictions. Therefore, we will set the values for our hyperparameters before our model training process.
 
-Another important task for us before we train our model is to look at the [permutation feature importance](https://scikit-learn.org/stable/modules/permutation_importance.html) graph from using `Extreme Gradient Boosting` (XGBoost in short). A benefit of using gradient boosting is that after the boosted trees are constructed, it is relatively straightforward to retrieve importance scores for each feature: Importance score is calculated explicitly for each feature in the dataset, allowing features to be ranked and compared to each other.
+Another important task to perform prior to training our model is to look at the [permutation feature importance](https://scikit-learn.org/stable/modules/permutation_importance.html) graph after using `Extreme Gradient Boosting` (XGBoost in short). A benefit of using gradient boosting is that after the boosted trees are constructed, it is relatively straightforward to retrieve importance scores for each feature: Importance scores are calculated explicitly for each feature in the dataset, allowing features to be ranked and compared to each other.
 
 
 ```python
@@ -1921,7 +1921,7 @@ plt.show()
 ![png](predicting-hotel-booking-cancellation_files/predicting-hotel-booking-cancellation_79_0.png)
 
 
-The feature `babies` is deemed unimportant among the 29 features for our prediction, and therefore will be removed.
+The feature `babies` is deemed unimportant among the 29 features we will be using for our prediction, and therefore will be removed.
 
 
 ```python
@@ -1933,7 +1933,7 @@ hotel_data_model = hotel_data_model.drop(['babies'], axis=1)
 
 We will be building models using several tree-based algorithms: *Decision Tree*, *Random Forest*, *Extra Trees Classifier*, and *Extreme Gradient Boosting*. *Random Forest* and *Extra Tree Classification* algorithms have been chosen as bagging algorithms, `XGBoost` has been chosen as one of the boosting algorithms, while *Decision Tree* algorithm has been chosen as one tree algorithm.
 
-Before we build our model, we will split our data into training and test set (70% and 30%, respectively). `X_train` and `X_test` data will be standardized using *Standard Scaler*. After that, [Stratified K-Fold Cross Validation](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html) method will be used for resampling. Implementing cross-validation is important to avoid overfitting. Model parameters have been defined in the previous part.
+Before we build our model, we will split our data into a training set and a test set (70% and 30%, respectively). `X_train` and `X_test` data will be standardized using *Standard Scaler*. After that, the [Stratified K-Fold Cross Validation](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html) method will be used for resampling. Implementing cross-validation is important to avoid overfitting. Model parameters have been defined in a previous section of this process.
 
 
 ```python
@@ -2137,4 +2137,4 @@ Its formula is $TP / (TP+FP)$
 * Recall is the ratio of correctly predicted positive observations to the actual positive observations.
 Its formula is $TP / (TP+FN)$
 
-Our *Random Forest* and *Extra Tree Classifier* models share the highest precision ratios. It means that both models predicted around 88% of all the positive labels correctly. On the other hand, the *Random Forest* model also has the highest recall ratio, meaning that this model predicted 79% of actual positive observations correctly. In conclusion, our *Random Forest* model gives us the best prediction for hotel booking cancellations.
+Our *Random Forest* and *Extra Tree Classifier* models share the highest precision ratios. It means that both models predicted around 88% of all the positive labels correctly. On the other hand, the *Random Forest* model also has a high recall ratio, correctly predicting 79% of positive observations correctly. In conclusion, our *Random Forest* model gives us the best prediction for hotel booking cancellations.
