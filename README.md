@@ -1,7 +1,5 @@
 # Hotel-Booking-Cancellation-Prediction
 
-Author: Ruth G. Nainggolan
-
 Predicting hotel booking cancellations with tree-based algorithms.
 
 Files
